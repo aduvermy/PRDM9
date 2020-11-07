@@ -1,0 +1,27 @@
+                ****Genotyper le gene PRDM9****
+
+Mélanie Bonhomme, Rémi Séraphin, Loic Guille, Arnaud Duvermy
+
+
+Notre stratégie pour génotyper le gène PRDM9 consiste à utiliser les jonctions
+de motifs connus du gène PRDM9. Ainsi nous avons générer un panel de
+reads pour tous les génotypes possibles que nous alignons sur les doubles motifs
+connues afin de réaliser une matrice de comptage pour chaque génotype c'est à
+dire un fichier qui recense le nombre de reads alignés sur chaque jonctions.
+L'ensemble de ces fichiers de comptage constituera notre base de donnée.
+L'intérêt étant de générer, ensuite de la même manière une matrice de comptage,
+associé à l'individu à génotyper pour calculer une distance entre cette matrice
+et toutes les matrices des génotypes possibles. La distance la plus faible étant
+associé au génotype le plus proche donc le plus probable.
+
+On notera que cette méthode fonctionne pour des reads de longueur de 100 et
+une couverture suffisante permettant de discréditer les différents génotypes.
+
+Utilisation:
+Lancer prdm9scan.sh avec un fastq en argument afin de générer le
+reportsorted.txt, puis searchHaplotype.py avec ce dernier fichier en argument
+afin d'obtenir le génotype le plus probable.
+
+Exemple:
+./prdm9scan.sh indivXX.fastq
+./searchHaplotype.py reportsortedXX.txt
